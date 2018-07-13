@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RandomVariables
+namespace RandomVariables.Distributions.Continuous
 {
     public sealed class Laplace
     {

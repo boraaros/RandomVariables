@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace RandomVariables
+namespace RandomVariables.Distributions.Continuous
 {
     [Serializable]
     public sealed class Exponential : IEquatable<Exponential>, IFormattable
@@ -36,7 +36,7 @@ namespace RandomVariables
             e1.Lambda == e2.Lambda ? new Gamma(2, e1.Lambda) : throw new NotImplementedException($"{e1} + {e2}");
 
         public static Gamma operator +(Exponential e, Gamma g) => 
-            e.Lambda == g.Beta ? new Gamma(g.Alpha + 1, e.Lambda) : throw new NotImplementedException($"{e} + {g}");
+            e.Lambda == g.Rate ? new Gamma(g.Shape + 1, e.Lambda) : throw new NotImplementedException($"{e} + {g}");
 
         public static Laplace operator -(Exponential e1, Exponential e2) =>
             e1.Lambda == e2.Lambda ? new Laplace(0, 1 / e1.Lambda) : throw new NotImplementedException($"{e1} - {e2}");

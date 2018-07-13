@@ -1,5 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RandomVariables;
+using RandomVariables.Distributions.Continuous;
 
 namespace UnitTests
 {
@@ -15,8 +15,8 @@ namespace UnitTests
             var result = x1 + x2;
 
             Assert.IsInstanceOfType(result, typeof(Gamma));
-            Assert.AreEqual(2, result.Alpha);
-            Assert.AreEqual(0.3, result.Beta);
+            Assert.AreEqual(2, result.Shape);
+            Assert.AreEqual(0.3, result.Rate);
         }
     }
 }
