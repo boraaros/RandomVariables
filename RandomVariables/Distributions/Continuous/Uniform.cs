@@ -31,9 +31,6 @@ namespace RandomVariables.Distributions.Continuous
         public double Density(double x) =>
             x < LowerBound || x > UpperBound ? 0 : 1 / (UpperBound - LowerBound);
 
-        public static Exponential Min(Exponential e1, Exponential e2) =>
-            new Exponential(e1.Lambda + e2.Lambda);
-
         public static bool operator ==(Uniform e1, Uniform e2) =>
             e1.Equals(e2);
 

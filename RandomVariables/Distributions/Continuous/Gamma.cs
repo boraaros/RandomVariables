@@ -4,10 +4,13 @@ using System;
 namespace RandomVariables.Distributions.Continuous
 {
     [Serializable]
-    public sealed class Gamma : IEquatable<Gamma>, IFormattable
+    public class Gamma : IEquatable<Gamma>, IFormattable
     {
         public double Shape { get; }
         public double Rate { get; }
+        public double Scale => 1 / Rate;
+
+        protected static Random random = new Random();
 
         public Gamma(double shape, double rate) => 
             (Shape, Rate) = (shape > 0 ? shape : throw new ArgumentOutOfRangeException(nameof(shape), shape, "must be positive"), 
@@ -22,13 +25,13 @@ namespace RandomVariables.Distributions.Continuous
         public double Variance => 
             Shape / Math.Pow(Rate, 2);
 
-        public double RandomValue() =>
+        public virtual double RandomValue() =>
             throw new NotImplementedException();
 
-        public double Distribution(double x) =>
+        public virtual double Distribution(double x) =>
             x < 0 ? 0 : GammaHelper.LowerIncompleteGamma(Shape, Rate * x) / GammaHelper.Lanczos(Shape);
 
-        public double Density(double x) =>
+        public virtual double Density(double x) =>
             x < 0 ? 0 : Math.Pow(Rate, Shape) * Math.Pow(x, Shape - 1) * Math.Pow(Math.E, -Rate * x) / GammaHelper.Lanczos(Shape);
 
         public static Gamma operator +(Gamma g, Exponential e) => 
@@ -55,7 +58,7 @@ namespace RandomVariables.Distributions.Continuous
         public override string ToString() => 
             $"Gamma({Shape}, {Rate})";
 
-        public string ToString(string format, IFormatProvider formatProvider) =>
+        public virtual string ToString(string format, IFormatProvider formatProvider) =>
             $"Gamma({Shape.ToString(format, formatProvider)}, {Rate.ToString(format, formatProvider)})";
     }
 }
