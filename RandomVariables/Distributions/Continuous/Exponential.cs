@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace RandomVariables.Distributions.Continuous
 {
+    [Serializable]
     public class Exponential : Gamma
     {
         public double Lambda => Rate;

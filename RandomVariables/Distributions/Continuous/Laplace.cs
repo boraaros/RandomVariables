@@ -2,7 +2,8 @@
 
 namespace RandomVariables.Distributions.Continuous
 {
-    public sealed class Laplace
+    [Serializable]
+    public class Laplace
     {
         public double Mu { get; }
         public double Lambda { get; }

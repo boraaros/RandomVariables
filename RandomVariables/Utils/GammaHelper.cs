@@ -36,7 +36,7 @@ namespace RandomVariables.Utils
             return Math.Pow(x, a) * Enumerable.Range(0, 100).Select(k => Math.Pow(-1, k) * Math.Pow(x, k) / (a + k) / Factorial(k)).Sum();
         }
 
-        private static int Factorial(int k)
+        public static int Factorial(int k)
         {
             var sum = 1;
             for (int i = 1; i <= k; i++)
